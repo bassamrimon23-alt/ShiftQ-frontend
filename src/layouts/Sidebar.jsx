@@ -11,17 +11,30 @@ function Sidebar({ isOpen, onClose }) {
   )
 
   return (
-    <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
-      <div className="sidebar-logo">ShiftQ</div>
-      <nav>
-        {links.map((link) => (
-          <NavLink key={link.path} to={link.path} onClick={onClose}>
-            {link.label}
-          </NavLink>
-        ))}
-      </nav>
-      <div className="sidebar-role">{ROLE_LABELS[user.role]}</div>
-    </aside>
+    <>
+      {isOpen && <div className="sidebar-backdrop" onClick={onClose} />}
+      <aside className={`sidebar ${isOpen ? 'open' : ''}`}>
+        <div className="sidebar-logo">workforce</div>
+
+        <div className="sidebar-org">
+          <span>Northstar Studio</span>
+          <span>{ROLE_LABELS[user.role]} workspace</span>
+        </div>
+
+        <nav className="sidebar-nav">
+          {links.map((link) => (
+            <NavLink key={link.path} to={link.path} onClick={onClose}>
+              {link.label}
+            </NavLink>
+          ))}
+        </nav>
+
+        <div className="sidebar-user">
+          <span>{user.name}</span>
+          <span>{ROLE_LABELS[user.role]}</span>
+        </div>
+      </aside>
+    </>
   )
 }
 

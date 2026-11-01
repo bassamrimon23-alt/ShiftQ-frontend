@@ -21,10 +21,11 @@ function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Login</h2>
-      {error && <p role="alert">{error}</p>}
+    <form className="login-form" onSubmit={handleSubmit}>
+      <h2>Sign in</h2>
+      {error && <p className="form-error" role="alert">{error}</p>}
       <input
+        className="input"
         type="email"
         placeholder="Email"
         value={email}
@@ -32,13 +33,14 @@ function Login() {
         required
       />
       <input
+        className="input"
         type="password"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         required
       />
-      <button type="submit" disabled={loading}>
+      <button className="btn-primary" type="submit" disabled={loading}>
         {loading ? 'Signing in...' : 'Login'}
       </button>
     </form>
